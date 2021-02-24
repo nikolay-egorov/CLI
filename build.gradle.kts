@@ -12,12 +12,23 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
-    testCompile("junit", "junit", "4.12")
+    testImplementation("junit", "junit", "4.12")
+    testRuntime("junit", "junit", "4.12")
 }
 
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_1_8
 }
+
+val buildedTest = task<Test>("Test") {
+    description = "Runs tests"
+    group = "verification"
+
+    testClassesDirs = sourceSets["test"].output.classesDirs
+    classpath = sourceSets["test"].runtimeClasspath
+}
+
+
 tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "1.8"
@@ -25,8 +36,10 @@ tasks {
     compileTestKotlin {
         kotlinOptions.jvmTarget = "1.8"
     }
+
+    test {
+        useJUnitPlatform()
+        dependsOn(buildedTest)
+    }
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
