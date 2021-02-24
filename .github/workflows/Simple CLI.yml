@@ -35,29 +35,18 @@ jobs:
       # gradle 
       - name: Build with Gradle
         run: |
-            chmod +x gradlew
-            ./gradlew build
+               chmod +x gradlew
+          #          build-in tests are not starting for some reason
+               ./gradlew build -x test
       
       - name: Test with Gradle
         run: ./gradlew Test
-#       - name: Gradle Command
-#         uses: eskatos/gradle-command-action@v1.3.3
-#         with:
-#           # Path to the Gradle Wrapper directory
-#           wrapper-directory: src/gradle/wrapper
-#           # Path to the Gradle executable
-#           gradle-executable: gradlew
-#           # Gradle version to use
-#           build-root-directory: /
-# #           # Gradle command line arguments, see gradle --help
-# #           arguments: # optional
-#           # Whether caching wrapper installation is enabled or not, default to 'true'
-#           wrapper-cache-enabled: true
+
  
       
       
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: echo Everithing is ok!
 
           
