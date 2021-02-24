@@ -36,7 +36,6 @@ jobs:
       - name: Build with Gradle
         run: |
                chmod +x gradlew
-          #          build-in tests are not starting for some reason
                ./gradlew build -x test
       
       - name: Test with Gradle
