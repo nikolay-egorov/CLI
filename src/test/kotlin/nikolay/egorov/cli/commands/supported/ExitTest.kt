@@ -6,7 +6,6 @@ import org.junit.Test
 
 class ExitTest : AbstractCommandTestBase() {
 
-
     @Test
     fun singularTest() {
         val execute = Exit("exit", emptyList()).execute(emptyStream, outStream, errorStream)
@@ -24,5 +23,4 @@ class ExitTest : AbstractCommandTestBase() {
         val executionStatus = processLine("echo 123 | exit")
         assertEquals(ExecutionStatus.INTERRUPT, executionStatus)
     }
-
 }

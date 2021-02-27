@@ -6,7 +6,6 @@ import nikolay.egorov.cli.commands.AbstractCommand
 import nikolay.egorov.cli.commands.CommandCreator
 import nikolay.egorov.cli.commands.ExecutableInterface
 
-
 /**
  * Builds instances of ExecutableInterface meaning commands with needed args
  *
@@ -40,6 +39,4 @@ class PostVisitor : Visitor() {
             )
         )
     }
-
-
 }

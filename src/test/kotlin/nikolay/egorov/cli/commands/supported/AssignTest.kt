@@ -6,7 +6,6 @@ import nikolay.egorov.cli.runtime.Environment
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-
 class AssignTest : AbstractCommandTestBase() {
 
     @Test
@@ -30,6 +29,4 @@ class AssignTest : AbstractCommandTestBase() {
         lexer = Lexer("x = ")
         assertEquals(false, Parser(lexer.lexInput()).isNextAssignForTest())
     }
-
-
 }

@@ -20,6 +20,5 @@ class EchoTest : AbstractCommandTestBase() {
         executionStatus = processLine("echo")
         assertEquals(ExecutionStatus.PROCEED, executionStatus)
         assertEquals(lineSeparator, getOutputString())
-
     }
 }

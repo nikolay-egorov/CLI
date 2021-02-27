@@ -37,11 +37,9 @@ abstract class AbstractCommandTestBase {
         outputData.clear()
     }
 
-
     protected open fun getOutputString(): String? {
         return outputData.toByteArray().toString(Charsets.UTF_8)
     }
-
 
     protected fun processLine(line: String): ExecutionStatus {
         val lex = Lexer(line)
@@ -59,5 +57,4 @@ abstract class AbstractCommandTestBase {
 
         return pipe.execute(emptyStream, outStream, errorStream)
     }
-
 }

@@ -32,5 +32,4 @@ class Cat(name: String, args: List<String>) : AbstractCommand(name, args) {
 
         return ExecutionStatus.PROCEED
     }
-
 }

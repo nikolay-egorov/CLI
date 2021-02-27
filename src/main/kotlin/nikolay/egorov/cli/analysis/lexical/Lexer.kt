@@ -12,7 +12,6 @@ class Lexer(givenString: String) : LexerInterface {
     private val tokens: ArrayList<Lexem> = ArrayList()
     private var currPos = 0
 
-
     override fun pushLexem(type: LexemType, lexem: String, positionOfStart: Int) {
         var actualStart = positionOfStart
         if (actualStart == -1) {
@@ -75,7 +74,6 @@ class Lexer(givenString: String) : LexerInterface {
         }
 
         pushLexem(LexemType.WORD, buf.toString(), startOnPosition)
-
     }
 
     override fun lexQuotedWord(startsWith: Char) {
@@ -124,5 +122,4 @@ class Lexer(givenString: String) : LexerInterface {
         }
         return fedString[currPos + pos]
     }
-
 }

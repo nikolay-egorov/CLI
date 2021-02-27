@@ -61,5 +61,4 @@ class PreVisitor(private val environment: EnvironmentInterface = Environment.ins
             environment.putVariableValue(varName, lexem.text)
         }
     }
-
 }

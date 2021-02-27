@@ -5,7 +5,6 @@ import nikolay.egorov.cli.commands.ExecutionStatus
 import java.io.InputStream
 import java.io.OutputStream
 
-
 /**
  * Class for the echo command execution
  */
@@ -16,5 +15,4 @@ class Echo(name: String, args: List<String>) : AbstractCommand(name, args) {
         out.write(System.lineSeparator().toByteArray())
         return ExecutionStatus.PROCEED
     }
-
 }

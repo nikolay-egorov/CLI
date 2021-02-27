@@ -3,8 +3,6 @@ package nikolay.egorov.cli.runtime
 import org.jetbrains.annotations.NotNull
 import java.nio.file.Path
 import java.nio.file.Paths
-import java.util.*
-
 
 class Environment private constructor() : EnvironmentInterface {
     private val variables: MutableMap<String, String> = HashMap()
@@ -13,7 +11,6 @@ class Environment private constructor() : EnvironmentInterface {
     private object Holder {
         val INSTANCE = Environment()
     }
-
 
     override fun getVariableValue(variable: String): String {
         return if (variables.containsKey(variable)) {
@@ -38,5 +35,4 @@ class Environment private constructor() : EnvironmentInterface {
         val instance: EnvironmentInterface
             get() = Holder.INSTANCE
     }
-
 }

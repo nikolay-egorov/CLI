@@ -13,7 +13,6 @@ import nikolay.egorov.cli.commands.Pipe
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-
 /**
  * Class for managing user interactions at a higher level
  */
@@ -29,9 +28,7 @@ class ShellLoop {
             }
             line = inputReader.readLine()
         }
-
     }
-
 
     private fun processLine(line: String): ExecutionStatus {
         val err = System.err
@@ -51,7 +48,6 @@ class ShellLoop {
             err.write(lineSeparator.toByteArray())
             return ExecutionStatus.PROCEED
         }
-
 
         val combinedVisitor = CombinedVisitor()
         try {

@@ -26,5 +26,4 @@ class WcTest : AbstractCommandTestBase() {
         assertEquals(ExecutionStatus.PROCEED, result)
         assertEquals("0 \t1 \t0$lineSeparator", getOutputString())
     }
-
 }

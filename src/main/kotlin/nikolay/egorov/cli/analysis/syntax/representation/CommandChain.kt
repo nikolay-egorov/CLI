@@ -3,7 +3,6 @@ package nikolay.egorov.cli.analysis.syntax.representation
 import nikolay.egorov.cli.analysis.syntax.visitor.PostVisitor
 import nikolay.egorov.cli.analysis.syntax.visitor.PreVisitor
 import nikolay.egorov.cli.analysis.syntax.visitor.Visitor
-import java.util.*
 
 /**
  * Intermediate commands sequence representation
