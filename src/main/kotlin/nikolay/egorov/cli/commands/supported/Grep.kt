@@ -5,9 +5,13 @@ import com.xenomachina.argparser.default
 import nikolay.egorov.cli.analysis.exceptions.ParserException
 import nikolay.egorov.cli.commands.AbstractCommand
 import nikolay.egorov.cli.commands.ExecutionStatus
-import java.io.*
+import java.io.BufferedReader
+import java.io.File
+import java.io.InputStream
+import java.io.InputStreamReader
+import java.io.OutputStream
+import java.io.PrintStream
 import java.util.regex.Pattern
-
 
 class Grep(name: String, args: List<String>) : AbstractCommand(name, args) {
 
@@ -40,9 +44,7 @@ class Grep(name: String, args: List<String>) : AbstractCommand(name, args) {
             "FILE",
             help = "file to search in"
         ).default(null)
-
     }
-
 
     override fun execute(inp: InputStream, out: OutputStream, err: OutputStream): ExecutionStatus {
         val lineSeparator = System.lineSeparator()
@@ -61,7 +63,6 @@ class Grep(name: String, args: List<String>) : AbstractCommand(name, args) {
         val pattern = Pattern.compile(stringToSearch, if (parseInto.ignoreCase) Pattern.CASE_INSENSITIVE else 0)
         var shouldPrintAfter = parseInto.linesAfter
 
-
         var finalInput = inp
         if (parseInto.file != null) {
             val file = File(parseInto.file!!)
@@ -74,10 +75,8 @@ class Grep(name: String, args: List<String>) : AbstractCommand(name, args) {
             finalInput = file.inputStream()
         }
 
-
         val reader = BufferedReader(InputStreamReader(finalInput))
         val writer = PrintStream(out)
-
 
         for (line in reader.lines()) {
             if (pattern.matcher(line).find()) {

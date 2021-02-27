@@ -5,6 +5,7 @@ import nikolay.egorov.cli.commands.supported.Assign
 import nikolay.egorov.cli.commands.supported.Cat
 import nikolay.egorov.cli.commands.supported.Echo
 import nikolay.egorov.cli.commands.supported.Exit
+import nikolay.egorov.cli.commands.supported.Grep
 import nikolay.egorov.cli.commands.supported.Pwd
 import nikolay.egorov.cli.commands.supported.Wc
 
