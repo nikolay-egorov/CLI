@@ -12,6 +12,9 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
+    implementation("com.xenomachina", "kotlin-argparser", "2.0.7")
+    testImplementation("com.xenomachina", "kotlin-argparser", "2.0.7")
+
     testImplementation("junit", "junit", "4.12")
     testRuntime("junit", "junit", "4.12")
 }

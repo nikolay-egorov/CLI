@@ -9,4 +9,4 @@ import nikolay.egorov.cli.commands.CommandCreator
  * @see AbstractCommand
  * @see CommandCreator
  */
-class InvalidCommandCreationException(message: String) : RuntimeException(message)
+class InvalidCommandCreationException(message: String) : Exception(message)

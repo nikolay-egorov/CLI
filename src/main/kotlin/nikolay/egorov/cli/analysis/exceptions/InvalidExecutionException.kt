@@ -9,4 +9,4 @@ import nikolay.egorov.cli.commands.ExecutableInterface
  * @see AbstractCommand
  * @see ExecutableInterface
  */
-class InvalidExecutionException(message: String) : RuntimeException(message)
+class InvalidExecutionException(message: String) : Exception(message)
