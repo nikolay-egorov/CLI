@@ -41,11 +41,9 @@ jobs:
       - name: Test with Gradle
         run: ./gradlew Test
 
- 
-      
-      
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Everithing is ok!
+      - name: Ktlinter
+        run: ./gradlew ktLintCheck
+
+
 
           

@@ -23,6 +23,4 @@ class CommandCreatorTest : AbstractCommandTestBase() {
     fun badCreationTest() {
         CommandCreator.instance.createCommand("x", emptyList(), true)
     }
-
-
 }

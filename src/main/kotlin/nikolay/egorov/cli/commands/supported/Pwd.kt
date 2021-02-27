@@ -6,7 +6,6 @@ import nikolay.egorov.cli.runtime.Environment
 import java.io.InputStream
 import java.io.OutputStream
 
-
 /**
  * Class for the pwd command execution
  */
@@ -16,6 +15,4 @@ class Pwd(name: String, args: List<String>) : AbstractCommand(name, args) {
         out.write(System.lineSeparator().toByteArray())
         return ExecutionStatus.PROCEED
     }
-
-
 }

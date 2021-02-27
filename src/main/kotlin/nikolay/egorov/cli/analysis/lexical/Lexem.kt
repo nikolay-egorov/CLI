@@ -21,7 +21,8 @@ enum class LexemType {
  * @param endInd - to inclusive
  */
 data class Lexem(
-    var type: LexemType, var text: String,
-    val startInd: Int, val endInd: Int
+    var type: LexemType,
+    var text: String,
+    val startInd: Int,
+    val endInd: Int
 )
-

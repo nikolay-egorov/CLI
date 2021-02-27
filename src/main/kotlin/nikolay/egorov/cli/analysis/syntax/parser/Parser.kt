@@ -25,7 +25,6 @@ class Parser(input: ArrayList<Lexem>) : ParserInterface {
         private val size = tokens.size
         private var position = 0
 
-
         operator fun get(relativePosition: Int): Lexem {
             val position: Int = position + relativePosition
             return if (position >= size) stopLexem else tokens[position]
@@ -109,15 +108,11 @@ class Parser(input: ArrayList<Lexem>) : ParserInterface {
             }
             val noSpaceBetween = get(0).endInd + 1 == get(1).startInd
 
-
             return firstIsWord && secondIsAssignment && noSpaceBetween
         }
-
-
     }
 
     private val parserHelper: ParserUtil = ParserUtil(input)
-
 
     override fun parse(): Statement {
         val res = ArrayList<Statement>()

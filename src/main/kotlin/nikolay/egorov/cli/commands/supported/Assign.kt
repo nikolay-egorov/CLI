@@ -15,5 +15,4 @@ class Assign(name: String, args: List<String>) : AbstractCommand(name, args) {
         Environment.instance.putVariableValue(expression, getArgs().joinToString())
         return ExecutionStatus.PROCEED
     }
-
 }

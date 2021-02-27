@@ -1,7 +1,12 @@
 package nikolay.egorov.cli.commands
 
 import nikolay.egorov.cli.analysis.exceptions.InvalidCommandCreationException
-import nikolay.egorov.cli.commands.supported.*
+import nikolay.egorov.cli.commands.supported.Assign
+import nikolay.egorov.cli.commands.supported.Cat
+import nikolay.egorov.cli.commands.supported.Echo
+import nikolay.egorov.cli.commands.supported.Exit
+import nikolay.egorov.cli.commands.supported.Pwd
+import nikolay.egorov.cli.commands.supported.Wc
 
 /**
  * Helper class for creating any commands by passing arguments
@@ -12,7 +17,6 @@ class CommandCreator {
      * Default command for external commands
      */
     private val defaultCommand: Class<ExternalCommand> = ExternalCommand::class.java
-
 
     companion object {
         val instance = CommandCreator()
@@ -30,9 +34,7 @@ class CommandCreator {
             runnableCommands["exit"] = Exit::class.java
             runnableCommands["grep"] = Grep::class.java
         }
-
     }
-
 
     /**
      * Creates command by name and list of arguments

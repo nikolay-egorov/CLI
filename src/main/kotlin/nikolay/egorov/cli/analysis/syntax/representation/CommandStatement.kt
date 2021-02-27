@@ -21,6 +21,4 @@ class CommandStatement(val command: Lexem, val args: ArrayList<Lexem>) : Stateme
     override fun toString(): String {
         return "$command ${args.forEach { _ -> toString() }})"
     }
-
-
 }

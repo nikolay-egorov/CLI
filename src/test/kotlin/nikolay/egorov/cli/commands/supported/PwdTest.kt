@@ -12,7 +12,6 @@ class PwdTest : AbstractCommandTestBase() {
         Assert.assertEquals(ExecutionStatus.PROCEED, result)
         Assert.assertTrue(getOutputString()!!.isNotEmpty())
 
-
         result = processLine("pwd 123")
         Assert.assertEquals(ExecutionStatus.PROCEED, result)
         Assert.assertTrue(getOutputString()!!.isNotEmpty())

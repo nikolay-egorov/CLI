@@ -5,7 +5,6 @@ import nikolay.egorov.cli.analysis.syntax.visitor.PostVisitor
 import nikolay.egorov.cli.analysis.syntax.visitor.PreVisitor
 import nikolay.egorov.cli.analysis.syntax.visitor.Visitor
 
-
 /**
  * Since assignment is meant to creates variables, it's similar to
  * @see CommandStatement
@@ -23,6 +22,4 @@ class AssignStatement(val leftSide: Lexem, val rightSide: ArrayList<Lexem>) : St
     override fun toString(): String {
         return "$leftSide = $rightSide)"
     }
-
-
 }

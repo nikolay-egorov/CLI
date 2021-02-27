@@ -2,7 +2,6 @@ package nikolay.egorov.cli.runtime
 
 import java.nio.file.Path
 
-
 /**
  * Environment's use contract description
  */
