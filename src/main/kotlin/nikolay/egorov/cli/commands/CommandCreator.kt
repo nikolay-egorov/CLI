@@ -28,6 +28,7 @@ class CommandCreator {
             runnableCommands["pwd"] = Pwd::class.java
             runnableCommands["wc"] = Wc::class.java
             runnableCommands["exit"] = Exit::class.java
+            runnableCommands["grep"] = Grep::class.java
         }
 
     }
