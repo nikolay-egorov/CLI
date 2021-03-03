@@ -59,6 +59,10 @@ class ShellLoop {
         }
 
         val tasks = combinedVisitor.getExecutableResults()
+        if (tasks.isEmpty()) {
+            return ExecutionStatus.PROCEED
+        }
+
         var pipe = Pipe(tasks.first(), emptyList())
         if (tasks.size > 1) {
             pipe = Pipe(tasks.first(), tasks.slice(1 until tasks.size))
