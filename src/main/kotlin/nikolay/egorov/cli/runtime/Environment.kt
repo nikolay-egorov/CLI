@@ -8,9 +8,6 @@ class Environment private constructor() : EnvironmentInterface {
     private val variables: MutableMap<String, String> = HashMap()
     private val myCurrentDirectory = Paths.get(System.getProperty("user.dir"))
 
-    private object Holder {
-        val INSTANCE = Environment()
-    }
 
     override fun getVariableValue(variable: String): String {
         return if (variables.containsKey(variable)) {
@@ -27,12 +24,13 @@ class Environment private constructor() : EnvironmentInterface {
         get() = myCurrentDirectory
 
     companion object {
+        private val INSTANCE = Environment()
         /**
          * Returns the [Environment] instance
          *
          * @return The [Environment]
          */
         val instance: EnvironmentInterface
-            get() = Holder.INSTANCE
+            get() = INSTANCE
     }
 }
