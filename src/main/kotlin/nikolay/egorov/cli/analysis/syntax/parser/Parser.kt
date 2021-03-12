@@ -67,7 +67,7 @@ class Parser(input: ArrayList<Lexem>) : ParserInterface {
                 }
                 args.add(arg)
                 atPos = get(0)
-            } while (!listOf(LexemType.EOF, LexemType.PIPE).any { it -> it == atPos.type })
+            } while (atPos.type != LexemType.EOF && atPos.type != LexemType.PIPE)
             return CommandStatement(first, args)
         }
 
@@ -87,7 +87,7 @@ class Parser(input: ArrayList<Lexem>) : ParserInterface {
                     rightSide.add(arg)
                 }
                 atPos = get(0)
-            } while (!listOf(LexemType.EOF, LexemType.PIPE).any { it -> it == atPos.type })
+            } while (atPos.type != LexemType.EOF && atPos.type != LexemType.PIPE)
 
             return AssignStatement(leftSide, rightSide)
         }
@@ -98,17 +98,12 @@ class Parser(input: ArrayList<Lexem>) : ParserInterface {
          */
         fun isNextAssign(): Boolean {
             var typeAhead = get(0).type
-            val firstIsWord = listOf(LexemType.WORD, LexemType.QUOTED_W, LexemType.DOUBLE_QUOTED_W).any { it ->
-                it == typeAhead
-            }
-
+            val firstIsWord = LexemType.WORD == typeAhead
+                    || LexemType.QUOTED_W == typeAhead || LexemType.DOUBLE_QUOTED_W == typeAhead
             typeAhead = get(1).type
-            val secondIsAssignment = listOf(LexemType.ASSIGN_OP).any {
-                it == typeAhead
-            }
             val noSpaceBetween = get(0).endInd + 1 == get(1).startInd
 
-            return firstIsWord && secondIsAssignment && noSpaceBetween
+            return firstIsWord && (typeAhead == LexemType.ASSIGN_OP) && noSpaceBetween
         }
     }
 
