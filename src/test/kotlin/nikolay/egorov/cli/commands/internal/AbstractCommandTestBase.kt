@@ -1,4 +1,4 @@
-package nikolay.egorov.cli.commands.supported
+package nikolay.egorov.cli.commands.internal
 
 import nikolay.egorov.cli.analysis.lexical.Lexer
 import nikolay.egorov.cli.analysis.syntax.parser.Parser

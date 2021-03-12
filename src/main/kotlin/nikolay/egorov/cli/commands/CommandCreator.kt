@@ -1,12 +1,12 @@
 package nikolay.egorov.cli.commands
 
 import nikolay.egorov.cli.analysis.exceptions.InvalidCommandCreationException
-import nikolay.egorov.cli.commands.supported.Assign
-import nikolay.egorov.cli.commands.supported.Cat
-import nikolay.egorov.cli.commands.supported.Echo
-import nikolay.egorov.cli.commands.supported.Exit
-import nikolay.egorov.cli.commands.supported.Pwd
-import nikolay.egorov.cli.commands.supported.Wc
+import nikolay.egorov.cli.commands.internal.Assign
+import nikolay.egorov.cli.commands.internal.Cat
+import nikolay.egorov.cli.commands.internal.Echo
+import nikolay.egorov.cli.commands.internal.Exit
+import nikolay.egorov.cli.commands.internal.Pwd
+import nikolay.egorov.cli.commands.internal.Wc
 
 /**
  * Helper class for creating any commands by passing arguments

@@ -1,7 +1,7 @@
 package nikolay.egorov.cli.commands
 
 import nikolay.egorov.cli.analysis.exceptions.InvalidCommandCreationException
-import nikolay.egorov.cli.commands.supported.AbstractCommandTestBase
+import nikolay.egorov.cli.commands.internal.AbstractCommandTestBase
 import nikolay.egorov.cli.runtime.Environment
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
