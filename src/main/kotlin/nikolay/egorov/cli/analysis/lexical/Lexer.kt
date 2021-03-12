@@ -11,17 +11,14 @@ class Lexer(givenString: String) : LexerInterface {
     private val fedString: String = givenString
     private val tokens: ArrayList<Lexem> = ArrayList()
     private var currPos = 0
+    private val stopLexems = setOf('=', '|', '\u0000', '\'', '"', '\t', ' ')
 
     override fun pushLexem(type: LexemType, lexem: String, positionOfStart: Int) {
         var actualStart = positionOfStart
         if (actualStart == -1) {
             actualStart = currPos
         }
-        if (actualStart == currPos) {
-            tokens.add(Lexem(type, lexem, actualStart, currPos))
-        } else {
-            tokens.add(Lexem(type, lexem, actualStart, currPos - 1))
-        }
+        tokens.add(Lexem(type, lexem, actualStart, currPos - 1))
     }
 
     override fun lexInput(): ArrayList<Lexem> {
@@ -30,20 +27,19 @@ class Lexer(givenString: String) : LexerInterface {
             return tokens
         }
         var currentChar = fedString[currPos]
-
+        var currPos_ = Integer(0)
         while (currPos <= stopLength - 1) {
             val posWas = currPos
             when (currentChar) {
                 in "\'\"" -> lexQuotedWord(currentChar)
                 in "=|" -> lexOperation(currentChar)
-                in " \t" -> getNext()
+                in " \t" -> currPos++
                 else -> lexWord(currentChar)
             }
             if (posWas == currPos) {
-                currentChar = getNext()
-            } else {
-                currentChar = lookAt(0)
+                currPos++
             }
+            currentChar = lookAt()
         }
 
         return tokens
@@ -54,23 +50,10 @@ class Lexer(givenString: String) : LexerInterface {
         val startOnPosition = currPos
         var currentChar = startsWith
 
-        val stopPredicate = { char: Char ->
-            val ans = when (char) {
-                '=' -> true
-                '|' -> true
-                '\u0000' -> true
-                '\'' -> true
-                '"' -> true
-                '\t' -> true
-                ' ' -> true
-                else -> false
-            }
-            ans
-        }
-
-        while (!stopPredicate(currentChar)) {
+        while (!stopLexems.contains(currentChar)) {
             buf.append(currentChar)
-            currentChar = getNext()
+            currPos++
+            currentChar = lookAt()
         }
 
         pushLexem(LexemType.WORD, buf.toString(), startOnPosition)
@@ -78,17 +61,18 @@ class Lexer(givenString: String) : LexerInterface {
 
     override fun lexQuotedWord(startsWith: Char) {
         val buf = StringBuilder()
-        val startOnPosition = currPos
-        var currentChar = getNext()
+        val startOnPosition = currPos++
+        var currentChar = lookAt()
 
         while (true) {
             if (currentChar == startsWith) break
             if (currentChar == '\u0000')
                 throw LexException("Unexpected end of the word", currPos)
             buf.append(currentChar)
-            currentChar = getNext()
+            currPos++
+            currentChar = lookAt()
         }
-        getNext()
+        currPos++
 
         val type = if (startsWith == '"') LexemType.DOUBLE_QUOTED_W else LexemType.QUOTED_W
         pushLexem(type, buf.toString(), startOnPosition)
@@ -102,13 +86,6 @@ class Lexer(givenString: String) : LexerInterface {
         }
     }
 
-    override fun getNext(): Char {
-        currPos++
-        if (currPos >= fedString.length) {
-            return '\u0000'
-        }
-        return fedString[currPos]
-    }
 
     /**
      * Allows to lookup the char at position without moving current
@@ -116,7 +93,7 @@ class Lexer(givenString: String) : LexerInterface {
      * @param pos representing position to look at
      * @return Char at pos or end-of-string char
      */
-    private fun lookAt(pos: Int): Char {
+    override fun lookAt(pos: Int ): Char {
         if (currPos + pos >= fedString.length) {
             return '\u0000'
         }

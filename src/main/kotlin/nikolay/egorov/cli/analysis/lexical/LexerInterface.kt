@@ -29,10 +29,11 @@ interface LexerInterface {
     fun lexOperation(startsWith: Char)
 
     /**
-     * Retrieves next lexed char from the input
+     * Returnes next lexed char from the input on pos: current + shift
+     * @param pos - shift from which to look at
      * @return char representation of a lexem
      */
-    fun getNext(): Char
+    fun lookAt(pos: Int = 0): Char
 
     /**
      * Adds lexed token to a container within
