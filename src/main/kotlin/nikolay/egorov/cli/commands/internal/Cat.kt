@@ -26,6 +26,7 @@ class Cat(name: String, args: List<String>) : AbstractCommand(name, args) {
             if (!file.exists()) {
                 err.write(String.format("File %s does not exist", filename).toByteArray())
                 err.write(System.lineSeparator().toByteArray())
+                continue
             }
             Files.copy(file.toPath(), out)
         }
