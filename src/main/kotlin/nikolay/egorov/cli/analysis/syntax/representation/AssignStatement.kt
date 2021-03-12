@@ -2,7 +2,7 @@ package nikolay.egorov.cli.analysis.syntax.representation
 
 import nikolay.egorov.cli.analysis.lexical.Lexem
 import nikolay.egorov.cli.analysis.syntax.visitor.PostVisitor
-import nikolay.egorov.cli.analysis.syntax.visitor.PreVisitor
+import nikolay.egorov.cli.analysis.syntax.visitor.SubstitutionVisitor
 import nikolay.egorov.cli.analysis.syntax.visitor.Visitor
 
 /**
@@ -10,7 +10,7 @@ import nikolay.egorov.cli.analysis.syntax.visitor.Visitor
  * @see CommandStatement
  * but provides other semantics
  *
- * @see PreVisitor
+ * @see SubstitutionVisitor
  * @see PostVisitor
  */
 class AssignStatement(val leftSide: Lexem, val rightSide: ArrayList<Lexem>) : Statement {

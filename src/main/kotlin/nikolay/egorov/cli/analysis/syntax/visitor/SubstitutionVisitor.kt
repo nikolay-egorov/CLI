@@ -12,7 +12,7 @@ import nikolay.egorov.cli.runtime.EnvironmentInterface
  * @see Environment
  * @see Visitor
  */
-class PreVisitor(private val environment: EnvironmentInterface = Environment.instance) : Visitor() {
+class SubstitutionVisitor(private val environment: EnvironmentInterface = Environment.instance) : Visitor() {
 
     private val varPattern = Regex("(([\\w\\d]+)|\\$([\\w\\d]+))").toPattern()
 

@@ -11,7 +11,7 @@ import nikolay.egorov.cli.commands.CommandCreator
  * Splits process in 2 phased: pre-visit tries to actualise all variables values;
  * post-visit builds commands based on intermediate representation
  *
- * @see PreVisitor
+ * @see SubstitutionVisitor
  * @see PostVisitor
  * @see CommandCreator
  * @see Statement

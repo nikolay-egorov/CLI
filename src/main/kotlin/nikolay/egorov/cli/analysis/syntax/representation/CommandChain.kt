@@ -1,14 +1,14 @@
 package nikolay.egorov.cli.analysis.syntax.representation
 
 import nikolay.egorov.cli.analysis.syntax.visitor.PostVisitor
-import nikolay.egorov.cli.analysis.syntax.visitor.PreVisitor
+import nikolay.egorov.cli.analysis.syntax.visitor.SubstitutionVisitor
 import nikolay.egorov.cli.analysis.syntax.visitor.Visitor
 
 /**
  * Intermediate commands sequence representation
  * Basically, just a list of commands
  *
- * @see PreVisitor
+ * @see SubstitutionVisitor
  * @see PostVisitor
  */
 class CommandChain(commandList: ArrayList<Statement>) : Statement {
