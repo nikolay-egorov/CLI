@@ -86,14 +86,13 @@ class Lexer(givenString: String) : LexerInterface {
         }
     }
 
-
     /**
      * Allows to lookup the char at position without moving current
      *
      * @param pos representing position to look at
      * @return Char at pos or end-of-string char
      */
-    override fun lookAt(pos: Int ): Char {
+    override fun lookAt(pos: Int): Char {
         if (currPos + pos >= fedString.length) {
             return '\u0000'
         }

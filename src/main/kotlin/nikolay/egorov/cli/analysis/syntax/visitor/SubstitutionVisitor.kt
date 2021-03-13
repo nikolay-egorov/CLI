@@ -70,7 +70,6 @@ class SubstitutionVisitor(private val environment: EnvironmentInterface = Enviro
         }
     }
 
-
     private fun convertToWord(doubleQuoted: Lexem) {
         if (doubleQuoted.type == LexemType.DOUBLE_QUOTED_W) {
             doubleQuoted.type = LexemType.WORD
@@ -81,6 +80,5 @@ class SubstitutionVisitor(private val environment: EnvironmentInterface = Enviro
             doubleQuoted.text.replaceFirst('\'', ' ')
             doubleQuoted.text.dropLast(1)
         }
-
     }
 }

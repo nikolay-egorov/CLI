@@ -8,7 +8,6 @@ class Environment private constructor() : EnvironmentInterface {
     private val variables: MutableMap<String, String> = HashMap()
     private val myCurrentDirectory = Paths.get(System.getProperty("user.dir"))
 
-
     override fun getVariableValue(variable: String): String {
         return if (variables.containsKey(variable)) {
             variables[variable]!!

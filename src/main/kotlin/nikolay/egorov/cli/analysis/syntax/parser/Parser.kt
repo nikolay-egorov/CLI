@@ -98,8 +98,8 @@ class Parser(input: ArrayList<Lexem>) : ParserInterface {
          */
         fun isNextAssign(): Boolean {
             var typeAhead = get(0).type
-            val firstIsWord = LexemType.WORD == typeAhead
-                    || LexemType.QUOTED_W == typeAhead || LexemType.DOUBLE_QUOTED_W == typeAhead
+            val firstIsWord = LexemType.WORD == typeAhead ||
+                LexemType.QUOTED_W == typeAhead || LexemType.DOUBLE_QUOTED_W == typeAhead
             typeAhead = get(1).type
             val noSpaceBetween = get(0).endInd + 1 == get(1).startInd
 

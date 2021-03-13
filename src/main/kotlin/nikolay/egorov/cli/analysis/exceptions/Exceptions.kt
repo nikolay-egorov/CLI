@@ -5,7 +5,6 @@ import nikolay.egorov.cli.commands.AbstractCommand
 import nikolay.egorov.cli.commands.CommandCreator
 import nikolay.egorov.cli.commands.ExecutableInterface
 
-
 /**
  * Exception represents invalid callable command object creation.
  *

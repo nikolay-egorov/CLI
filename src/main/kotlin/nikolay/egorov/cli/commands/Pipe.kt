@@ -36,7 +36,6 @@ class Pipe(private val leftSide: ExecutableInterface, private val rightSide: Lis
         fun closeOutput() {
             outputStream.close()
         }
-
     }
 
     @Throws(InvalidExecutionException::class)
@@ -58,5 +57,4 @@ class Pipe(private val leftSide: ExecutableInterface, private val rightSide: Lis
         result = Pipe(first, other).execute(pipeUtility.inputStream, out, err)
         return result
     }
-
 }
