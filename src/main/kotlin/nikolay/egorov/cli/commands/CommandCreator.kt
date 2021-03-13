@@ -52,7 +52,7 @@ class CommandCreator {
             if (args.isEmpty()) {
                 throw InvalidCommandCreationException("Right-side shall not be empty")
             }
-            Assign::class.java.getConstructor(String::class.java, MutableList::class.java).newInstance(name, args)
+            Assign(name, args)
         } else
             defaultCommand.getConstructor(String::class.java, MutableList::class.java).newInstance(name, args)
     }

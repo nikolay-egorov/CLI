@@ -31,7 +31,7 @@ class SubstitutionVisitor(private val environment: EnvironmentInterface = Enviro
     }
 
     /**
-     * For any word or double-braced word tries to see it in regex.
+     * For any word tries to see it in regex.
      * If it's inside, substitution via EnvironmentInterface attempt shall be called
      *
      * @see EnvironmentInterface
