@@ -34,6 +34,8 @@ abstract class AbstractCommandTestBase {
     }
 
     protected fun clear() {
+        emptyStream.readBytes()
+        outStream.flush()
         outputData.clear()
     }
 

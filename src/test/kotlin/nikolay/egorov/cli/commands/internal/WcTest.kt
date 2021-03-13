@@ -12,12 +12,14 @@ class WcTest : AbstractCommandTestBase() {
     fun plainWcTest() {
         val result = processLine("wc gradlew")
         assertEquals(ExecutionStatus.PROCEED, result)
-        assertEquals("183 \t1181 \t5581$lineSeparator", getOutputString())
+        assertEquals("183 \t781 \t5763$lineSeparator", getOutputString())
+        clear()
     }
 
     @Test
     fun wcPipeTest() {
-        var result = processLine("echo 123 | wc ")
+        clear()
+        var result = processLine("echo 123 | wc")
         assertEquals(ExecutionStatus.PROCEED, result)
         assertEquals("1 \t1 \t4$lineSeparator", getOutputString())
 
@@ -27,8 +29,8 @@ class WcTest : AbstractCommandTestBase() {
         assertEquals("1 \t0 \t1$lineSeparator", getOutputString())
 
         clear()
-        result = processLine("echo \"123312 asd \" | wc")
+        result = processLine("echo 312 asd | wc")
         assertEquals(ExecutionStatus.PROCEED, result)
-        assertEquals("1 \t2 \t12$lineSeparator", getOutputString())
+        assertEquals("1 \t2 \t8$lineSeparator", getOutputString())
     }
 }

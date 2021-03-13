@@ -13,11 +13,11 @@ import java.io.OutputStream
 class Pipe(private val leftSide: ExecutableInterface, private val rightSide: List<ExecutableInterface>) :
     ExecutableInterface {
     /**
-     * Static storage for all input redirection.
+     * Dynamic storage for all input redirection.
      * Stores output of a command in buffer,
      * so that the next command in line gets it as an input
      */
-    companion object PipeUtility {
+    class PipeUtility {
         var offset = 0
         val buffer = ArrayList<Int>(2048)
         val inputStream = object : InputStream() {
@@ -33,18 +33,18 @@ class Pipe(private val leftSide: ExecutableInterface, private val rightSide: Lis
             }
         }
 
-        fun clear() {
-            buffer.clear()
+        fun closeOutput() {
+            outputStream.close()
         }
+
     }
 
     @Throws(InvalidExecutionException::class)
     override fun execute(inp: InputStream, out: OutputStream, err: OutputStream): ExecutionStatus {
-        var outputFinal = outputStream
-        if (rightSide.isEmpty()) {
-            outputFinal = out
-        }
+        val pipeUtility = PipeUtility()
+        val outputFinal = if (rightSide.isEmpty()) out else pipeUtility.outputStream
         var result = leftSide.execute(inp, outputFinal, err)
+        pipeUtility.closeOutput()
         if (result == ExecutionStatus.INTERRUPT) {
             return ExecutionStatus.INTERRUPT
         }
@@ -55,8 +55,8 @@ class Pipe(private val leftSide: ExecutableInterface, private val rightSide: Lis
         val first = rightSide.first()
         val other = rightSide.slice(1 until rightSide.size)
 
-        result = Pipe(first, other).execute(inputStream, out, err)
-
+        result = Pipe(first, other).execute(pipeUtility.inputStream, out, err)
         return result
     }
+
 }
