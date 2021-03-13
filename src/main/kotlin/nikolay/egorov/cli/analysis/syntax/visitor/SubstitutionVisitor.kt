@@ -38,27 +38,49 @@ class SubstitutionVisitor(private val environment: EnvironmentInterface = Enviro
      */
     private fun actualizeLexem(lexem: Lexem) {
         val type = lexem.type
-        if (type === LexemType.WORD || type === LexemType.DOUBLE_QUOTED_W) {
+        if (type == LexemType.WORD || type == LexemType.DOUBLE_QUOTED_W || type == LexemType.QUOTED_W) {
 
-            lexem.type = LexemType.QUOTED_W
+            convertToWord(lexem)
             val res = StringBuffer()
             val matcher = varPattern.matcher(lexem.text)
-            var varName = lexem.text
+            val varName = lexem.text
 
-            if (matcher.matches()) {
-                varName = if (matcher.group(2) != null) {
-                    matcher.group(2)
+            while (matcher.find()) {
+                var foundSecond = false
+                var trailingVarName: String
+                if (matcher.group(2) != null) {
+                    trailingVarName = matcher.group(2)
+                    foundSecond = true
                 } else {
-                    matcher.group(3)
+                    trailingVarName = matcher.group(3)
                 }
 
-                res.append(environment.getVariableValue(varName))
-                if (res.isNotEmpty()) {
-                    lexem.text = res.toString()
+                if (foundSecond) {
+                    res.append(trailingVarName)
+                    continue
                 }
+                res.append(environment.getVariableValue(trailingVarName))
+            }
+
+            if (res.isNotEmpty() && lexem.text != res.toString()) {
+                lexem.text = res.toString()
             }
 
             environment.putVariableValue(varName, lexem.text)
         }
+    }
+
+
+    private fun convertToWord(doubleQuoted: Lexem) {
+        if (doubleQuoted.type == LexemType.DOUBLE_QUOTED_W) {
+            doubleQuoted.type = LexemType.WORD
+            doubleQuoted.text.replaceFirst('\"', ' ')
+            doubleQuoted.text.dropLast(1)
+        } else if (doubleQuoted.type == LexemType.QUOTED_W) {
+            doubleQuoted.type = LexemType.WORD
+            doubleQuoted.text.replaceFirst('\'', ' ')
+            doubleQuoted.text.dropLast(1)
+        }
+
     }
 }
