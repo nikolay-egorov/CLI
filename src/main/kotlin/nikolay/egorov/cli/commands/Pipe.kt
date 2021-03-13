@@ -56,7 +56,6 @@ class Pipe(private val leftSide: ExecutableInterface, private val rightSide: Lis
         val other = rightSide.slice(1 until rightSide.size)
 
         result = Pipe(first, other).execute(inputStream, out, err)
-        clear()
 
         return result
     }

@@ -19,10 +19,9 @@ class Wc(name: String, args: List<String>) : AbstractCommand(name, args) {
         } else {
             File(getArgs().first()).readText()
         }
-
         val linesCount = allText.split("\n").size - 1
-        val wordsCount = allText.split(' ').size
-        val bytesCount = allText.filterNot { it in "\r\n\t" }.length
+        val wordsCount = allText.split("\\s+".toRegex()).filterNot { it in "\r\n\t" }.size
+        val bytesCount = allText.chars().count() - 1
 
         out.write("$linesCount \t$wordsCount \t$bytesCount".toByteArray())
         out.write(System.lineSeparator().toByteArray())
