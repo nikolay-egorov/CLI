@@ -85,6 +85,7 @@ class GrepTest : AbstractCommandTestBase() {
 
     @Test
     fun printAfterFile() {
+        clear()
         val tempFile = Files.createTempFile("test", "regex")
         Files.newOutputStream(tempFile).use { os ->
             val printer = PrintStream(os)

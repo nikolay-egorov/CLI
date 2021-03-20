@@ -29,7 +29,11 @@ class Grep(name: String, args: List<String>) : AbstractCommand(name, args) {
         val linesAfter by parser.storing(
             "-A",
             help = "print n lines after"
-        ) { toInt() }.default(0)
+        ) { toIntOrNull() }.default(0).addValidator {
+            if (value == null) {
+                throw ParserException("Invalid -A key argument", null)
+            }
+        }
 
         val regex by parser.positional(
             "REGEX",
@@ -82,13 +86,15 @@ class Grep(name: String, args: List<String>) : AbstractCommand(name, args) {
             if (pattern.matcher(line).find()) {
                 shouldPrintAfter = 0
                 writer.println(line)
-            } else if (shouldPrintAfter <= parseInto.linesAfter - 1) {
+            } else if (shouldPrintAfter!! <= parseInto.linesAfter!! - 1) {
                 shouldPrintAfter++
                 writer.println(line)
             }
         }
-        writer.close()
         reader.close()
+        if (finalInput != inp) {
+            finalInput.close()
+        }
 
         return ExecutionStatus.PROCEED
     }

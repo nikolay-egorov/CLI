@@ -51,6 +51,9 @@ class PreVisitor(private val environment: EnvironmentInterface = Environment.ins
                 } else {
                     matcher.group(3)
                 }
+                if (varName.toIntOrNull() != null) {
+                    return
+                }
 
                 res.append(environment.getVariableValue(varName))
                 if (res.isNotEmpty()) {
