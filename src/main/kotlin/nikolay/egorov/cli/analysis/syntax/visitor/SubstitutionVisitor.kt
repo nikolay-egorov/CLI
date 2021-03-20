@@ -16,6 +16,8 @@ class SubstitutionVisitor(private val environment: EnvironmentInterface = Enviro
 
     private val varPattern = Regex("(([\\w\\d]+)|\\$([\\w\\d]+))").toPattern()
 
+    private val delimitersSet = setOf<Char>('.', ',', '_', '-', ':', ';')
+
     override fun visit(statement: AssignStatement) {
         actualizeLexem(statement.leftSide)
         statement.rightSide.forEach {
@@ -56,7 +58,12 @@ class SubstitutionVisitor(private val environment: EnvironmentInterface = Enviro
                 }
 
                 if (foundSecond) {
+                    val shift = res.length + trailingVarName.length
+                    val atShift = if (shift + 1 < varName.length) varName[shift] else varName[shift - 1]
                     res.append(trailingVarName)
+                    if (delimitersSet.contains(atShift)) {
+                        res.append(atShift)
+                    }
                     continue
                 }
                 res.append(environment.getVariableValue(trailingVarName))
