@@ -1,12 +1,7 @@
 package nikolay.egorov.cli.commands
 
 import nikolay.egorov.cli.analysis.exceptions.InvalidCommandCreationException
-import nikolay.egorov.cli.commands.internal.Assign
-import nikolay.egorov.cli.commands.internal.Cat
-import nikolay.egorov.cli.commands.internal.Echo
-import nikolay.egorov.cli.commands.internal.Exit
-import nikolay.egorov.cli.commands.internal.Pwd
-import nikolay.egorov.cli.commands.internal.Wc
+import nikolay.egorov.cli.commands.internal.*
 
 /**
  * Helper class for creating any commands by passing arguments
@@ -32,6 +27,8 @@ class CommandCreator {
             runnableCommands["pwd"] = Pwd::class.java
             runnableCommands["wc"] = Wc::class.java
             runnableCommands["exit"] = Exit::class.java
+            runnableCommands["ls"] = Ls::class.java
+            runnableCommands["cd"] = Cd::class.java
         }
     }
 

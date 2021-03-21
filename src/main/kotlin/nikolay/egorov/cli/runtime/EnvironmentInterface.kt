@@ -25,5 +25,5 @@ interface EnvironmentInterface {
      * Returns current working directory
      * @return The absolute path to directory
      */
-    val currentDirectory: Path
+    var currentDirectory: Path
 }

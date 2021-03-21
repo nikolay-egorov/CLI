@@ -6,7 +6,7 @@ import java.nio.file.Paths
 
 class Environment private constructor() : EnvironmentInterface {
     private val variables: MutableMap<String, String> = HashMap()
-    private val myCurrentDirectory = Paths.get(System.getProperty("user.dir"))
+    private var myCurrentDirectory = Paths.get(System.getProperty("user.dir"))
 
     override fun getVariableValue(variable: String): String {
         return if (variables.containsKey(variable)) {
@@ -19,8 +19,9 @@ class Environment private constructor() : EnvironmentInterface {
     }
 
     @get:NotNull
-    override val currentDirectory: Path
+    override var currentDirectory: Path
         get() = myCurrentDirectory
+        set(value) {myCurrentDirectory = value}
 
     companion object {
         private val INSTANCE = Environment()
