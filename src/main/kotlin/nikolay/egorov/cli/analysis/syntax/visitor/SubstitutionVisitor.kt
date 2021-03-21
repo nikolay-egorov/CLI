@@ -16,7 +16,7 @@ class SubstitutionVisitor(private val environment: EnvironmentInterface = Enviro
 
     private val varPattern = Regex("(([\\w\\d]+)|\\$([\\w\\d]+))").toPattern()
 
-    private val delimitersSet = setOf<Char>('.', ',', '_', '-', ':', ';')
+    private val delimitersSet = setOf<Char>('.', ',', '_', '-', ':', ';', '\\', '/')
 
     override fun visit(statement: AssignStatement) {
         actualizeLexem(statement.leftSide)
